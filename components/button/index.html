@@ -20,6 +20,25 @@
     </script>
 
     <button is="my-button">Button</button>
+
+    <div>
+        <p>
+            1、首先编写一个类，继承自带扩展的原生元素所对应的接口。button标签对应HTMLButtonElement接口，类MyButton继承此接口，并且新增了单机事件的默认响应，即弹窗提示"Hello MyButton";
+        </p>
+        <p>
+            2、然后使用customElements.defineAPI进行注册，这个API有三个参数。
+            <ul>
+                <li>1、第一个参数是string类型的，指定扩展元素的name,对应扩展原生元素is属性的取值，这个参数取值必须包括连字符“-”，否则会报错，这是为了与原生元素的标记进行区分。</li>
+                <li>2、第二个参数是一个构造函数，即自定义元素的逻辑实体。<small>构造函数的命名虽然没有硬性限制，但是建议使用首字母大写的驼峰式命名，并且与name的语义保持一致。</small></li>
+                <li>
+                    3、第三个参数仅对扩展原生元素有效，前文提到HTMLElement接口与元素的多对多关系，必须通过extends指定被扩展的原生元素名称。
+                </li>
+                <li>
+                    4、最后创建一个button元素将它的is属性赋值为“my-button”，如上html所示，此时单机了这个按钮以后，浏览器将会出现一个“Hello MyButton”的弹窗提示。至此便完成了对button的功能扩展。
+                </li>
+            </ul>
+        </p>
+    </div>
 </body>
 
 </html>
