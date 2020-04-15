@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button</title>
+</head>
+
+<body>
+    <script>
+        class MyButton extends HTMLButtonElement {
+            constructor() {
+                super();
+                this.addEventListener('click', e => alert('Hello MyButton'));
+            }
+        }
+
+        customElements.define('my-button', MyButton, { extends: 'button' });
+    </script>
+
+    <button is="my-button">Button</button>
+</body>
+
+</html>
