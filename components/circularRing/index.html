@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>circularRing</title>
+    <style>
+        circular-ring:not(:defined)::after {
+            display: block;
+            content: '';
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <circular-ring radius='100' border-width='2' border-color='red' inner-color='blue'></circular-ring>
+    <script>
+        class CircularRing extends HTMLElement {
+            constructor() {
+                super();
+            }
+            connectedCallback() {
+                const size = this.getAttribute('radius') * 2;
+                const innerColor = this.getAttribute('inner-color');
+                const borderColor = this.getAttribute('border-color');
+                const borderWidth = this.getAttribute('border-width');
+                const styles = `
+                width:${size}px;
+                height:${size}px;
+                box-sizing:border-box;
+                background-color:${innerColor};
+                border-radius:50%;
+                border:solid ${borderWidth}px ${borderColor};
+                `;
+                this.innerHTML = `<div style='${styles};'></div>`
+            }
+        }
+        customElements.define('circular-ring', CircularRing);
+    </script>
+
+    <ul>
+        <li>类CircularRing内部的this指向circular-ring元素对应的DOM，可以直接使用DOM API,例如getAttribute和innerHTML。</li>
+        <li>
+            connectedCallback()方法在circular-ring元素被插入HTML文档之后执行，获取属性后创建CSS和结构。由于这个机制，页面会在js执行完成之后突然出现一个圆环，可能影响到页面的其他布局。需要在js加载完成之前添加loading状态，从而中和突兀的视觉效果。
+        </li>
+        <li>
+            在加载js之前浏览器对于不认识的HTML标签，会将其视为一个普通标签解析。
+        </li>
+        <li>
+            不仅可以使用document.querySelector('circular-ring')获取到circular-ring。还可以使用CSS标签选择器对其应用样式
+        </li>
+        <li>
+            上述的状态为我们对自定义元素添加loading状态提供了技术支撑。除此之外，CSS中新增的:defined伪元素选择器代表自定义元素被注册后的状态，我们可以使用:not伪元素选择器实现反向选择。
+        </li>
+    </ul>
+</body>
+
+</html>
