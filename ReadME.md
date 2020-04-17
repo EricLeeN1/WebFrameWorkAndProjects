@@ -30,20 +30,15 @@ Web Components是W3C推出的一套用于封装具有复用性，互用性前端
 
 #### 2-1）、自定义元素
 
-自定义元素（Custom Elements）：创建自定义HTML元素或扩展内置元素。
+	自定义元素（Custom Elements）：创建自定义HTML元素或扩展内置元素。
+	元素与接口之间是多对多的映射关系。存在多个不同元素对应同一个接口类型，以及同一个接口对应多个不同元素的情形。这对扩展原生元素非常重要。
+	自定义元素API建立在一系列HTMLElement接口的基础上，通过创建一个继承HTMLElement接口对应类的派生类实现扩展。
+	HTML每个元素均对应一种接口类型，HTMLElement是所有接口的跟接口（Basic Interface）。
 
-元素与接口之间是多对多的映射关系。存在多个不同元素对应同一个接口类型，以及同一个接口对应多个不同元素的情形。这对扩展原生元素非常重要。
-
-自定义元素API建立在一系列HTMLElement接口的基础上，通过创建一个继承HTMLElement接口对应类的派生类实现扩展。
-
-HTML每个元素均对应一种接口类型，HTMLElement是所有接口的跟接口（Basic Interface）。
-
-```
-<a>标签对应HTMLAnchorElement接口
-<div>标签对应HTMLDivElement接口
-<button>标签对应HTMLButtonElement接口
-<strong>、<section>、<code>等标签直接对应HTMLElement接口
-```
+		<a>标签对应HTMLAnchorElement接口
+		<div>标签对应HTMLDivElement接口
+		<button>标签对应HTMLButtonElement接口
+		<strong>、<section>、<code>等标签直接对应HTMLElement接口
 
 ##### 2-1-1)、扩展原生元素
 
@@ -67,11 +62,24 @@ HTML每个元素均对应一种接口类型，HTMLElement是所有接口的跟�
 	实例参考：compones目录下lifeCircle的demo展示的就是结合生命周期创建的一个自定义元素my-dialog
 	demo收获：自定义元素缺少与全局隔离的命名空间
 
-1. connectCallBack:当元素被加入HTML文档后，即于document建立连接进入connected状态后被一次性触发
-2. disconnectedCallback:与connectedCallback相反，当元素被从HTML文档中删除进入disconnected状态后被一次性触发。
-3. attributeChangedCallback:监听元素属性的变化，每次改变后均被赋值。
-4. adoptedCallback:元素被从当前document移动到其他document后被触发，比如把iframe中元素移动到主文档中。
+	1. connectCallBack:当元素被加入HTML文档后，即于document建立连接进入connected状态后被一次性触发
+	2. disconnectedCallback:与connectedCallback相反，当元素被从HTML文档中删除进入disconnected状态后被一次性触发。
+	3. attributeChangedCallback:监听元素属性的变化，每次改变后均被赋值。
+	4. adoptedCallback:元素被从当前document移动到其他document后被触发，比如把iframe中元素移动到主文档中。
 
-#### 2-2）、HTML template
 
-	1、
+#### 2-2）、Shadow DOM
+
+	Shadow DOM可以创建一个与全局隔离的独立作用域，全局作用域和独立作用域的CSS和JavaScript互不影响。
+	听上去类似iframe，两者均可用于作用域的隔离和封装。
+
+Iframe Vs Shadow DOM
+
+	iframe封装了一个完整的执行上下文
+	Shadow DOM封装了一个较轻量的局部作用域
+
+	
+类似于DOM组成DOM Tree一样，Shadow DOM也组成了Shadow Tree;
+
+	Shadow DOM所在的子树作为全局DOM Tree的一部分而被称之为Shadow Tree。
+	在全局作用域内的DOM成为Light DOM。其共同组成的树形结构被称为Light Treel
