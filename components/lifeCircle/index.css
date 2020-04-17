@@ -1,0 +1,90 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    min-height: 100vh;
+    background-color: pink;
+}
+xy-dialog {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+xy-dialog[open="true"] {
+    display: block;
+}
+
+.xy-dialog__wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+    position: fixed;
+    margin: 0 auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin-top: 10vh;
+    width: 60vw;
+    height: 60vh;
+    background-color: #fff;
+}
+
+.xy-button {
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    padding: 0 5px;
+    font-size: 12px;
+}
+
+xy-dialog .xy-dialog__head {
+    background-color: red;
+    position: relative;
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.xy-dialog__head .xy-dialog__close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.xy-dialog__head .xy-dialog__title {
+    line-height: 50px;
+    color: #fff;
+}
+
+.xy-dialog__body {
+    margin-top: 0;
+    padding: 0 20px;
+    height: calc(100% - 100px);
+    margin-bottom: auto;
+    box-sizing: border-box;
+}
+
+.xy-dialog__body .xy-dialog__content {
+    min-height: 100%;
+    padding: 20px 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.xy-dialog__footer {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.xy-dialog__footer .xy-button {
+    padding: 5px 10px;
+    border-radius: 5px;
+}
