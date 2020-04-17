@@ -35,6 +35,7 @@ $btn_adopt.addEventListener('click', ev => {
 
 $btn_change_name.addEventListener('click', ev => {
     if ($dialog) {
-        $dialog.name = Math.random();
+        $dialog.setAttribute('name', Math.random());
     }
+
 }, false);

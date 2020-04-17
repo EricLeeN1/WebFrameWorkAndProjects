@@ -62,6 +62,8 @@ Web Components是W3C推出的一套用于封装具有复用性，互用性前端
 	实例参考：compones目录下lifeCircle的demo展示的就是结合生命周期创建的一个自定义元素my-dialog
 	demo收获：自定义元素缺少与全局隔离的命名空间
 
+![](C:\Users\Eric\Desktop\微信图片_20200417152350.jpg)
+
 	1. connectCallBack:当元素被加入HTML文档后，即于document建立连接进入connected状态后被一次性触发
 	2. disconnectedCallback:与connectedCallback相反，当元素被从HTML文档中删除进入disconnected状态后被一次性触发。
 	3. attributeChangedCallback:监听元素属性的变化，每次改变后均被赋值。
@@ -82,4 +84,4 @@ Iframe Vs Shadow DOM
 类似于DOM组成DOM Tree一样，Shadow DOM也组成了Shadow Tree;
 
 	Shadow DOM所在的子树作为全局DOM Tree的一部分而被称之为Shadow Tree。
-	在全局作用域内的DOM成为Light DOM。其共同组成的树形结构被称为Light Treel
+	在全局作用域内的DOM成为Light DOM。其共同组成的树形结构被称为Light Tree;
