@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template</title>
+</head>
+
+<body>
+    <div>
+        <button class="btn" id="btn-open">打开dialog</button>
+        <button class="btn" id="btn-change-name">修改dialog Name</button>
+        <button class="btn" id="btn-remove">移除dialog</button>
+        <button class="btn" id="btn-adopt">Adopt dialog</button>
+    </div>
+    <template id="xy-dialog-template">
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                outline: none;
+            }
+
+            .xy-dialog__wrapper[open="true"] {
+                display: block;
+            }
+
+            .xy-dialog__wrapper {
+                border-radius: 10px;
+                overflow: hidden;
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 60vw;
+                display: none;
+                height: 60vh;
+                border: 1px solid #e1e1e1;
+                background-color: #fff;
+            }
+
+            .xy-button {
+                background-color: #fff;
+                border: 1px solid #e1e1e1;
+                padding: 0 5px;
+                font-size: 12px;
+            }
+
+            .xy-dialog__wrapper .xy-dialog__head {
+                background-color: red;
+                position: relative;
+                height: 50px;
+                padding: 0 20px;
+                box-sizing: border-box;
+            }
+
+            .xy-dialog__head .xy-dialog__close {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .xy-dialog__head .xy-dialog__title {
+                line-height: 50px;
+                color: #fff;
+            }
+
+            .xy-dialog__body {
+                margin-top: 0;
+                padding: 0 20px;
+                height: calc(100% - 100px);
+                margin-bottom: auto;
+                box-sizing: border-box;
+            }
+
+            .xy-dialog__body .xy-dialog__content {
+                min-height: 100%;
+                padding: 20px 0;
+                box-sizing: border-box;
+                border-bottom: 1px solid #e1e1e1;
+                background: #fff;
+            }
+
+            .xy-dialog__footer {
+                height: 50px;
+                line-height: 50px;
+                padding: 0 20px;
+                box-sizing: border-box;
+                text-align: right;
+            }
+
+            .xy-dialog__footer .xy-button {
+                padding: 5px 10px;
+                border-radius: 5px;
+            }
+        </style>
+        <div class="xy-dialog__wrapper">
+            <div class="xy-dialog__head">
+                <button class="xy-button xy-dialog__close">&times;</button>
+                <h3 class="xy-dialog__title"></h3>
+            </div>
+            <div class="xy-dialog__body">
+                <div class="xy-dialog__content"></div>
+            </div>
+            <div class="xy-dialog__footer">
+                <button class="xy-button xy-button-infos">取消</button>
+                <button class="xy-button xy-button-success">确定</button>
+            </div>
+        </div>
+    </template>
+    <iframe id="ifr" frameborder="0"></iframe>
+    <script src="./index.js"></script>
+    <script src="./handle.js"></script>
+</body>
+
+</html>

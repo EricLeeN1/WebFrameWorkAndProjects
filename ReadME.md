@@ -43,7 +43,7 @@ Web Components是W3C推出的一套用于封装具有复用性，互用性前端
 ##### 2-1-1)、扩展原生元素
 
 	在原生元素现有的功能的基础上进行增量扩展是一种典型的渐进性增强思维，也是PWA积极提倡的一种实践模式。
-	示例参考：components目录下button的demo展示的就是扩展原生组件<button></button>的流程。
+	示例参考：components的custom目录下button的demo展示的就是扩展原生组件<button></button>的流程。
 
 ##### 2-1-2)、新建独立元素
 
@@ -52,7 +52,7 @@ Web Components是W3C推出的一套用于封装具有复用性，互用性前端
     业务组件可以抽象为一个独立元素，他有自己的标签、样式和逻辑，不用于任何原生元素。
 	在React/Vue中，将一个业务组件进行封装后，可以使用类似HTML标签的语法声明，并且组件的数据可以通过标签属性传入组件内部。
     使用自定义元素api创建一个独立元素的模式与之类似。
-	实例参考：components目录下circularRing的demo展示的就是新建一个独立元素的创建和声明方式。
+	实例参考：components的custom目录下circularRing的demo展示的就是新建一个独立元素的创建和声明方式。
 
 ##### 2-1-3)、生命周期
 
@@ -85,3 +85,26 @@ Iframe Vs Shadow DOM
 
 	Shadow DOM所在的子树作为全局DOM Tree的一部分而被称之为Shadow Tree。
 	在全局作用域内的DOM成为Light DOM。其共同组成的树形结构被称为Light Tree;
+	
+1. 当attachShadow的参数mode为true时，返回一个SharowRoot对象.它是一个Document Fragment，可以使用绝大多数的DOM API，例如querySelector和innerHTML。
+2. 被改造前，xy-dialog元素的CSS代码被注入head里面，即全局作用域内：HTML结构被注入xy-dialog节点。被改造后的CSS和HTML结构均被注入xy-dialog的ShadowRoot中。
+3. 将原本xy-dialog节点的属性open迁移到classname为xy-dialog_wrapper的节点上，用于控制Dialog组件的显示和隐藏状态。
+
+#### 2-3）、HTML template
+
+HTML template 是一个有既定格式的处理器，输入数据输出HTML字符串，HTML新增的template元素的作用同样如此。
+
+template元素是惰性的，主要表现在以下几个方面：
+
+1. template元素自身以及其内部的所有元素均不会被渲染，视觉上不可见。使用浏览器的开发者工具会发现，template的默认样式仅有“display:none;”,其内部元素被一个DocumentFragment包裹，没有任何样式。
+2. template内部的所有元素在被激活之前不会被解析、图片不会被加载、audio和video不会被播放、JavaScript脚本不会被执行。
+3. template内部的所有元素均不存在于文档空间内，无法使用document.querySelector获取它们。
+4. 在使用importNode或cloneNode激活template模版后，其内部的元素便被转化为HTML实体，从而被解析和渲染，与常规HTML模版引擎不同的是，template只是静态的样板结构，没有任何逻辑处理能力，主要依赖引用它的外部逻辑实现数据到结构的转换。
+	1. importNode函数的第二个参数的作用是指定导入方式是浅克隆还是深克隆，值为true时将导入template内部的所有子元素。
+
+##### 2-3-1）、扩展组件
+
+	Web Components 规范的slot与Vue的slot在使用方法上基本一致；
+	在模版中使用slot标签占位，如果有name属性则称其为具名slot；
+	自定义的HTML结构通过slot属性指定具名slot取代其占位。
+	与vue的slot不用的是，Web Components 的slot占位符与slot实体之间是引用关系。

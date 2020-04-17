@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slot</title>
+    <style>
+        .dialog__content {
+            display: flex;
+        }
+
+        .dialog__content-showcase {
+            width: 150px;
+        }
+
+        .dialog__content-img {
+            width: 100%;
+            display: block;
+        }
+
+        .dialog__title {
+            text-align: center;
+            font-size: 16px;
+            background-color: black;
+            color: white;
+            height: 50px;
+            padding: 0 20px;
+            margin-left: -20px;
+            margin-right: -20px;
+            line-height: 50px;
+        }
+
+        .dialog__content-author {
+            color: #999;
+            font-size: 12px;
+            text-align: justify;
+            word-break: break-word;
+        }
+
+        .dialog__content-desc {
+            flex: 1;
+            margin: 0;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <template id="xy-dialog-template">
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                outline: none;
+            }
+
+            .xy-dialog__wrapper[open="true"] {
+                display: block;
+            }
+
+            .xy-dialog__wrapper {
+                border-radius: 10px;
+                overflow: hidden;
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 60vw;
+                display: none;
+                height: 60vh;
+                border: 1px solid #e1e1e1;
+                background-color: #fff;
+            }
+
+            .xy-button {
+                background-color: #fff;
+                border: 1px solid #e1e1e1;
+                padding: 0 5px;
+                font-size: 12px;
+            }
+
+            .xy-dialog__wrapper .xy-dialog__head {
+                background-color: red;
+                position: relative;
+                height: 50px;
+                padding: 0 20px;
+                box-sizing: border-box;
+            }
+
+            .xy-dialog__head .xy-dialog__close {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .xy-dialog__head .xy-dialog__title {
+                line-height: 50px;
+                color: #fff;
+            }
+
+            .xy-dialog__body {
+                margin-top: 0;
+                padding: 0 20px;
+                height: calc(100% - 100px);
+                margin-bottom: auto;
+                box-sizing: border-box;
+            }
+
+            .xy-dialog__body .xy-dialog__content {
+                min-height: 100%;
+                padding: 20px 0;
+                box-sizing: border-box;
+                border-bottom: 1px solid #e1e1e1;
+                background: #fff;
+            }
+
+            .xy-dialog__footer {
+                height: 50px;
+                line-height: 50px;
+                padding: 0 20px;
+                box-sizing: border-box;
+                text-align: right;
+            }
+
+            .xy-dialog__footer .xy-button {
+                padding: 5px 10px;
+                border-radius: 5px;
+            }
+        </style>
+        <div class="xy-dialog__wrapper">
+            <div class="xy-dialog__head">
+                <button class="xy-button xy-dialog__close">&times;</button>
+                <h3 class="xy-dialog__title">
+                    <slot name="title"></slot>
+                </h3>
+            </div>
+            <div class="xy-dialog__body">
+                <div class="xy-dialog__content">
+                    <slot name="content"></slot>
+                </div>
+            </div>
+            <div class="xy-dialog__footer">
+                <button class="xy-button xy-button-infos">取消</button>
+                <button class="xy-button xy-button-success">确定</button>
+            </div>
+        </div>
+    </template>
+    <xy-dialog id="dialog">
+        <div slot="title" class="dialog__title">
+            故宫
+        </div>
+        <section slot="content" class="dialog__content">
+            <div class="dialog__content-showcase">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587128152455&di=587873173e16aa146c0ad620160570a5&imgtype=0&src=http%3A%2F%2Fhbimg.huabanimg.com%2F07bef302144d8d81eb93a00a2606099674f666c1306bb-RC4mjB_fw658"
+                    alt="故宫" class="dialog__content-img">
+                <span class="dialog__content-author">Eric Lee</span>
+            </div>
+            <p class="dialog__content-desc">
+                北京故宫于明成祖永乐四年（1406年）开始建设，以南京故宫为蓝本营建，到永乐十八年（1420年）建成。它是一座长方形城池，南北长961米，东西宽753米，四面围有高10米的城墙，城外有宽52米的护城河。紫禁城内的建筑分为外朝和内廷两部分。外朝的中心为太和殿、中和殿、保和殿，统称三大殿，是国家举行大典礼的地方。内廷的中心是乾清宫、交泰殿、坤宁宫，统称后三宫，是皇帝和皇后居住的正宫。
+            </p>
+        </section>
+    </xy-dialog>
+    <script src="./index.js"></script>
+</body>
+
+</html>

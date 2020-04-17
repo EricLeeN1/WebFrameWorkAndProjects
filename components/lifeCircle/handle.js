@@ -29,8 +29,10 @@ $btn_remove.addEventListener('click', ev => {
 }, false);
 
 $btn_adopt.addEventListener('click', ev => {
-    const $el = document.adoptNode($dialog);
-    $ifr.contentWindow.document.body.appendChild($el);
+    if ($dialog) {
+        const $el = document.adoptNode($dialog);
+        $ifr.contentWindow.document.body.appendChild($el);
+    }
 }, false);
 
 $btn_change_name.addEventListener('click', ev => {
