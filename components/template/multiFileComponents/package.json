@@ -1,0 +1,13 @@
+{
+    "name": "multi-file-component",
+    "version": "0.0.1",
+    "description": "多文件组件demo",
+    "scripts": {
+        "build": "node ./build/compile.js"
+    },
+    "devDependencies": {
+        "jsdom": "^14.0.0"
+    },
+    "author": "eric Lee",
+    "license": "MIT"
+}

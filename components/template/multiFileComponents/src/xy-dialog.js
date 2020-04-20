@@ -9,6 +9,7 @@ class XyDialog extends HTMLElement {
         super();
         // 添加Shadow Dom
         this._shadowRoot = this.attachShadow({ mode: 'open' });
+        this._tpl = document.querySelector('#xy-dialog-template');
         this._close = this._close.bind(this);
     }
 
@@ -37,7 +38,7 @@ class XyDialog extends HTMLElement {
 
     connectedCallback() {
         console.log('connectedCallback');
-        this._tpl = document.querySelector('#xy-dialog-template');
+
         // 将模版结构注入shadowRoot
         this._shadowRoot.appendChild(document.importNode(this._tpl.content, true));
 
@@ -45,7 +46,8 @@ class XyDialog extends HTMLElement {
         const content = this.getAttribute('content');
 
         if (title) {
-            const titleNode = document.createTextNode(title);
+            const titleNode = document.createElement('h2');
+            titleNode.innerHTML = title;
             this._shadowRoot.querySelector('.xy-dialog__title').appendChild(titleNode);
         }
 
@@ -54,7 +56,7 @@ class XyDialog extends HTMLElement {
             this._shadowRoot.querySelector('.xy-dialog__content').appendChild(contentNode);
         }
         this.$wrapper = this._shadowRoot.querySelector('.xy-dialog__wrapper');
-        this.$wrapper.setAttribute('open', true);
+        this.$wrapper.setAttribute('open', this.getAttribute('open'));
 
         this.$closeBtn = this._shadowRoot.querySelector('.xy-dialog__close');
         // 关闭按钮添加click监听
