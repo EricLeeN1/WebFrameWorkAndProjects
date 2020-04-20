@@ -108,3 +108,6 @@ template元素是惰性的，主要表现在以下几个方面：
 	在模版中使用slot标签占位，如果有name属性则称其为具名slot；
 	自定义的HTML结构通过slot属性指定具名slot取代其占位。
 	与vue的slot不用的是，Web Components 的slot占位符与slot实体之间是引用关系。
+
+### 3）、更友好的编码方式
+
