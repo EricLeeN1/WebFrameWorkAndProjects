@@ -1,0 +1,11 @@
+{
+  "name": "spacomponents",
+  "version": "1.0.0",
+  "description": "spa demo",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./build/compile.js"
+  },
+  "author": "Eric Lee",
+  "license": "ISC"
+}

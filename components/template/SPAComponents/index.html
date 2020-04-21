@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn {
+            height: 30px;
+            font-size: 14px;
+        }
+
+        #ifr {
+            display: block;
+            margin-top: 50px;
+            width: 100%;
+            height: 500px;
+        }
+
+        my-dialog:not(:defined) {
+            display: none;
+        }
+
+        .dialog__title {
+            color: blue;
+            font-size: 16px;
+            /* background-color: black; */
+            color: #ffffff;
+            height: 40px;
+            line-height: 50px;
+        }
+
+        .dialog__content {
+            display: flex;
+            padding: 0 20px;
+        }
+
+        .dialog__content-showcase {
+            width: 100px;
+        }
+
+        .dialog__content-img {
+            width: 100%;
+            display: block;
+        }
+
+        .dialog__content-author {
+            color: #999;
+            font-size: 12px;
+            text-align: justify;
+            word-break: break-word;
+        }
+
+        .dialog__content-desc {
+            flex: 1;
+            margin: 0;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>My Dialog</h3>
+
+    <button class='btn' id='btn-open-dialog'>Open Dialog</button>
+    <button class='btn' id='btn-close-dialog'>close Dialog</button>
+    <button class='btn' id='btn-change-name'>Change Dialog Name</button>
+    <button class='btn' id='btn-remove-dialog'>Remove Dialog</button>
+    <button class='btn' id='btn-add-dialog'>Add Dialog</button>
+    <xy-dialog id="dialog">
+        <div slot="title" class="dialog__title">
+            故宫
+        </div>
+        <section slot="content" class="dialog__content">
+            <div class="dialog__content-showcase">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587128152455&di=587873173e16aa146c0ad620160570a5&imgtype=0&src=http%3A%2F%2Fhbimg.huabanimg.com%2F07bef302144d8d81eb93a00a2606099674f666c1306bb-RC4mjB_fw658"
+                    alt="故宫" class="dialog__content-img">
+                <span class="dialog__content-author">Eric Lee</span>
+            </div>
+            <p class="dialog__content-desc">
+                北京故宫于明成祖永乐四年（1406年）开始建设，以南京故宫为蓝本营建，到永乐十八年（1420年）建成。它是一座长方形城池，南北长961米，东西宽753米，四面围有高10米的城墙，城外有宽52米的护城河。紫禁城内的建筑分为外朝和内廷两部分。外朝的中心为太和殿、中和殿、保和殿，统称三大殿，是国家举行大典礼的地方。内廷的中心是乾清宫、交泰殿、坤宁宫，统称后三宫，是皇帝和皇后居住的正宫。
+            </p>
+        </section>
+    </xy-dialog>
+    <script src="runtime.js"></script>
+    <script src="dist/xy-dialog.js"></script>
+    <script>
+        let $dialog = document.getElementById('dialog');
+        const $btn_open_dialog = document.getElementById('btn-open-dialog');
+        const $btn_close_dialog = document.getElementById('btn-close-dialog');
+        const $btn_remove_dialog = document.getElementById('btn-remove-dialog');
+        const $btn_add_dialog = document.getElementById('btn-add-dialog');
+        const $btn_change_name = document.getElementById('btn-change-name');
+
+        $btn_open_dialog.addEventListener('click', ev => {
+            $dialog.open = true;
+        }, false);
+
+        $btn_close_dialog.addEventListener('click', ev => {
+            $dialog.open = false;
+        }, false);
+
+        $btn_remove_dialog.addEventListener('click', ev => {
+            if ($dialog) {
+                console.log($dialog.parentNode);
+                $dialog.parentNode.removeChild($dialog);
+            }
+        }, false);
+        
+        $btn_add_dialog.addEventListener('click', ev => {
+            if ($dialog) {
+                document.body.appendChild($dialog);
+            }
+        }, false);
+
+        $btn_change_name.addEventListener('click', ev => {
+            if ($dialog) {
+                $dialog.name = Math.random();
+            }
+        }, false);
+    </script>
+</body>
+
+</html>
