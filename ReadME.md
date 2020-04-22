@@ -124,5 +124,26 @@ template元素是惰性的，主要表现在以下几个方面：
 
 ALL-in-JS是单文件组件的核心开发模式，React和Vue均支持使用JSX将JavaScript、CSS和HTML汇总在一个文件中编写，同时Vue还支持类似Mustache的模版语法。
 
+主流浏览器的最新版本已经开始提供支持，未来可期。其实除了现实意义以外吗，Web Components规范更重要的是它在前端组建理论上的里程碑意义、以此为引导，原本混沌的前端组件化有了相对统一的方向。开发者可围绕Web components的设计模式进行深度探索和思考。
 
-	
+### 4）、设计模式
+
+#### 4-1)、重新思考DOM
+
+性能损耗主要由JavaScript调用DOM API引起。
+
+解决上述问题的尝试：
+
+1. 利用浏览器执行帧机制，尽可能批量处理对DOM API的调用，从而将DOM操作集中到一帧，进而减少浏览器的重排等性能损耗较高的行为。
+2. 使用Virtual Scrolling提高长列表滚动性能、
+3. 借助Canvas取代其他DOM以减少DOM数量等。
+4. 因React同时被人熟知的虚拟DOM（Virtual Dom,简称VDOM），也是目前前端社区较流行的DOM操作模式。
+		
+		VDOM将每个DOM映射为内存中一个称为Virtual DOM的json对象，DOM Tree映射为Virtual Tree。在需要改变DOM属性或者本身之前，使用高效的diff算法对比Virtual Tree当前版本和即将更新的版本之间的差异，最后将其应用于真实的DOM中。
+		VDOM并非没有DOM操作，而是尽量减少不必要的DOM操作。
+
+#### 4-2）、生命周期的设计艺术
+
+自定义元素生命周期的里程碑对应的钩子函数可以简单归为两种：仅触发一次和可多次触发。从命名上，钩子函数均使用过去式，如connectedCallback和disconnectedCallback,代表钩子函数在里程碑阶段的逻辑执行完毕后才被调用。
+
+***总体来说，不论是组件化还是模块化，核心的理念都是解耦和复用。Web Components规范包括三种核心技术：自定义元素、Shadow DOM和HTML template。即支持渐进增强HTML原生元素，也可以自定义结构、表现、和行为完全独立的新元素。一方面，Web Components规范为前端组件化制定了相对统一的模式和方向；另一方面，自定义元素的生命周期理念也为组件的设计提供了优秀的参考。***
